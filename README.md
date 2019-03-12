@@ -1,6 +1,8 @@
 # node-dao-sql
 
-Generates Database-Access-Objects for SQL-Databases
+Database-Access-Objects for SQL-Databases
+
+**In early development state (not use now)**
 
 # Features
 - Validation in model
@@ -18,7 +20,7 @@ Generates Database-Access-Objects for SQL-Databases
 
 ```JavaScript
 /**
- * PLEASE WAIT FOR VERSION 1.0
+ * TODO
  */
 ```
 

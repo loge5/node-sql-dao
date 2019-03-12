@@ -11,10 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/loge5/node-doa-sql"
+    "url": "https://github.com/loge5/node-dao-sql"
   },
   "keywords": [
+    "dao",
     "doa",
+    "sql",
+    "database",
+    "access",
+    "objects",
     "mysql"
   ],
   "author": "Rolf Loges",
