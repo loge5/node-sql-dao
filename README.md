@@ -1,4 +1,4 @@
-# node-dao-sql
+# node-sql-dao
 
 Database-Access-Objects for SQL-Databases
 
@@ -16,13 +16,21 @@ Database-Access-Objects for SQL-Databases
 
 - DAO-Class generator
 
+# Install
+
+```npm install --save sql-dao```
+
 # Usage
 
 ```JavaScript
-/**
- * TODO
- */
+const DatabaseAccessObject = require('sql-dao').DatabaseAccessObject
+const MySqlDatabaseConnection = require('sql-dao').MySqlDatabaseConnection
+class MyDAO extends DatabaseAccessObject {
+  // TODO override abstract methods
+}
 ```
+
+For example Class see [./lib/testData/Example.js](./lib/testData/Example.js)
 
 # Development
 
