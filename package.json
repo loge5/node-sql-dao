@@ -1,0 +1,44 @@
+{
+  "name": "sql-dao",
+  "version": "0.0.1",
+  "description": "database access objects for sql databases",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js",
+    "cover": "node node_modules/nyc/bin/nyc.js --reporter=html npm test",
+    "format": "node node_modules/standard/bin/cmd.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loge5/node-doa-sql"
+  },
+  "keywords": [
+    "doa",
+    "mysql"
+  ],
+  "author": "Rolf Loges",
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^8.10.40",
+    "chai": "^3.5.0",
+    "mocha": "^3.5.3",
+    "nyc": "^13.3.0",
+    "standard": "^11.0.1"
+  },
+  "standard": {
+    "ignore": [
+      "config"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.js",
+      "config",
+      "test.js"
+    ]
+  }
+}
