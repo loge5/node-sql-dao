@@ -46,7 +46,7 @@ example.name = 'Test'
 await example.insert() // will set private key in object
 ```
 
-## READ
+## Read
 ```JavaScript
 // find all
 let examples = await Example.find()
@@ -76,6 +76,54 @@ let example = new Example()
 example.id = 1 // PrivateKey
 await example.delete()
 ```
+
+## Validate
+```JavaScript
+let example = new Example()
+example.name = 'Test'
+if (example.validate()) {
+  example.save()
+} else {
+  console.error(example.errors.join("\n"))
+}
+```
+
+## Releations
+
+For now you can use the before/after hooks
+
+```JavaScript
+const DatabaseAccessObject = require('sql-dao').DatabaseAccessObject
+const MySqlDatabaseConnection = require('sql-dao').MySqlDatabaseConnection
+class Example extends DatabaseAccessObject {
+  beforeDelete (transaction = undefined) {
+    // delete other entry first
+    await this.otherDao.delete(transaction)
+  }
+
+  // ...
+}
+```
+
+## Transactions
+
+```JavaScript
+/*
+ * When an statement fails, rollback previous statements
+ */
+let dbConn = Example.getDatabaseConnection()
+let transaction = dbConn.createTransaction()
+let example1 = new Example()
+let example2 = new Example()
+try {
+  await example1.insert(transaction)
+  await example2.insert(transaction)
+  await dbConn.commitTransaction(transaction)
+} catch (e) {
+  await dbConn.rollbackTransaction(transaction)
+}
+```
+
 
 # Development
 
