@@ -12,7 +12,7 @@ Database-Access-Objects for SQL-Databases
 - CRUD an model without writing sql
 - Add validation to a model
 - MySql connection included
-- soon: genereate DAO directly from datebase
+- genereate DAO directly from datebase
 
 # Install
 
@@ -29,8 +29,20 @@ class Example extends DatabaseAccessObject {
   // TODO override abstract methods
 }
 ```
-
 For an example see [./lib/testData/Example.js](./lib/testData/Example.js)
+
+## Generate DatabaseAccessObject from Database
+```JavaScript
+const MySqlDatabaseConnection = require('sql-dao').MySqlDatabaseConnection
+const Generator = require('sql-dao').Generator
+const dbConfig = require('./db.config') // your db config
+const fs = require('fs')
+
+let tableShema = await testDbConnection.getTableShema('example')
+let generator = new Generator()
+let classContent = generator.createClass(tableShema, './db.config', 'MySqlDatabaseConnection')
+fs.writeFileSync('Example.js', classContent)
+```
 
 ## Create
 

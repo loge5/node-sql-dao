@@ -7,3 +7,4 @@ module.exports.Validator = require('./lib/Validator')
 module.exports.validators = {
   RequiredValidator: require('./lib/validators/RequiredValidator')
 }
+module.exports.Generator = require('./lib/Generator')
