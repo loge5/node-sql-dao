@@ -13,4 +13,9 @@ mocha.addFile('lib/validators/RequiredValidator.spec')
 // DatabaseConnections
 mocha.addFile('lib/databaseConnections/MySqlDatabaseConnection.spec')
 
+// Generator
+mocha.addFile('lib/TableColumn.spec')
+mocha.addFile('lib/TableShema.spec')
+mocha.addFile('lib/Generator.spec')
+
 mocha.run()
