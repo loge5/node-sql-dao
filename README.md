@@ -1,48 +1,54 @@
-# node-sql-dao
-
 [![npm version](https://badge.fury.io/js/sql-dao.svg)](http://badge.fury.io/js/sql-dao)
 [![Dependencies](https://david-dm.org/loge5/node-sql-dao.svg)](https://david-dm.org/loge5/node-sql-dao) 
 [![devDependency Status](https://david-dm.org/loge5/node-sql-dao/dev-status.svg)](https://david-dm.org/loge5/node-sql-dao#info=devDependencies)
 
-Database-Access-Objects for SQL-Databases
+# node-sql-dao
 
-**In early development state (not use now)**
+**Database-Access-Objects for SQL-Databases**
 
 # Features
-- CRUD an model without writing sql
-- Add validation to a model
-- MySql connection included
-- genereate DAO directly from datebase
+- Generate a model directly from Database
+- CRUD without writing sql
+- Model validation
+- Extendible: add own validators, databases, etc.
+
+**TODO:**
+
+- More default validators based on column types
+- Handle relations
+- Add more Databases (for now only **MySQL**)
 
 # Install
 
 ```npm install --save sql-dao```
 
-# Usage
+# Generate a DatabaseAccessObject from Database
 
-## Extend from DatabaseAccessObject
+create config file for database (see [https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql)):
 
 ```JavaScript
-const DatabaseAccessObject = require('sql-dao').DatabaseAccessObject
-const MySqlDatabaseConnection = require('sql-dao').MySqlDatabaseConnection
-class Example extends DatabaseAccessObject {
-  // TODO override abstract methods
+// just an example
+module.exports = {
+  host: '127.0.0.1',
+  user: 'root',
+  password: '',
+  database: 'dao_example'
 }
 ```
-For an example see [./lib/testData/Example.js](./lib/testData/Example.js)
 
-## Generate DatabaseAccessObject from Database
-```JavaScript
-const MySqlDatabaseConnection = require('sql-dao').MySqlDatabaseConnection
-const Generator = require('sql-dao').Generator
-const dbConfig = require('./db.config') // your db config
-const fs = require('fs')
-
-let tableShema = await testDbConnection.getTableShema('example')
-let generator = new Generator()
-let classContent = generator.createClass(tableShema, './db.config', 'MySqlDatabaseConnection')
-fs.writeFileSync('Example.js', classContent)
+then call from command line:
+```Shell
+node ./node_modules/sql-dao/gen-mysql.js <dbConfigFile> <tableName> <targetPath>
 ```
+
+Example:
+```Shell
+node ./node_modules/sql-dao/gen-mysql.js ./config/dbconf.js example ./lib
+```
+
+For an example output see [./lib/testData/Example.js](./lib/testData/Example.js)
+
+# Usage
 
 ## Create
 
@@ -136,7 +142,11 @@ try {
 ```
 
 
-# Development
+# Contributing / Development
+
+## Style
+
+[https://github.com/standard/standard](https://github.com/standard/standards)
 
 ## Testing
 
