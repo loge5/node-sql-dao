@@ -9,16 +9,10 @@ Database-Access-Objects for SQL-Databases
 **In early development state (not use now)**
 
 # Features
-- Validation in model
-- CRUD of an model without writing sql
-
-## Supported SQL-Databases
-
-- MySql
-
-## TODO
-
-- DAO-Class generator
+- CRUD an model without writing sql
+- Add validation to a model
+- MySql connection included
+- soon: genereate DAO directly from datebase
 
 # Install
 
