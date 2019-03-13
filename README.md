@@ -1,5 +1,9 @@
 # node-sql-dao
 
+[![npm version](https://badge.fury.io/js/sql-dao.svg)](http://badge.fury.io/js/sql-dao)
+[![Dependencies](https://david-dm.org/loge5/node-sql-dao.svg)](https://david-dm.org/loge5/node-sql-dao) 
+[![devDependency Status](https://david-dm.org/loge5/node-sql-dao/dev-status.svg)](https://david-dm.org/loge5/node-sql-dao#info=devDependencies)
+
 Database-Access-Objects for SQL-Databases
 
 **In early development state (not use now)**
