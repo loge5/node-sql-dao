@@ -43,13 +43,15 @@ For an example see [./lib/testData/Example.js](./lib/testData/Example.js)
 ```JavaScript
 let example = new Example()
 example.name = 'Test'
-await example.insert() // will set private key in object
+await example.insert()
+console.log('inserted with PK: ' + example.id)
 ```
 
 ## Read
 ```JavaScript
 // find all
 let examples = await Example.find()
+
 // find some
 let whereClause = new WhereClause('?? = ?', ['name','Test']) // will prepare params
 let examples2 = await Example.find(whereClause)
@@ -62,8 +64,10 @@ example.id = 1 // PrivateKey
 example.name = 'Test2'
 await example.update()
 
-// create or on duplicate update
-// e.g. when name is unique constraint in db
+/*
+ * create or on duplicate update
+ * e.g. when name is unique constraint in db
+ */ 
 let example = new Example()
 example.name = 'Test2'
 await example.save()
@@ -88,13 +92,14 @@ if (example.validate()) {
 }
 ```
 
-## Releations
+## Relations
 
 For now you can use the before/after hooks
 
 ```JavaScript
 const DatabaseAccessObject = require('sql-dao').DatabaseAccessObject
 const MySqlDatabaseConnection = require('sql-dao').MySqlDatabaseConnection
+
 class Example extends DatabaseAccessObject {
   beforeDelete (transaction = undefined) {
     // delete other entry first
