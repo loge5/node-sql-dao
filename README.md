@@ -20,7 +20,7 @@ Database-Access-Objects for SQL-Databases
 
 # Usage
 
-## Create new class witch extends DatabaseAccessObject
+## Extend from DatabaseAccessObject
 
 ```JavaScript
 const DatabaseAccessObject = require('sql-dao').DatabaseAccessObject
