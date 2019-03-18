@@ -9,6 +9,8 @@ mocha.addFile('lib/WhereClause.spec')
 
 // Validators
 mocha.addFile('lib/validators/RequiredValidator.spec')
+mocha.addFile('lib/validators/LengthValidator.spec')
+mocha.addFile('lib/validators/NumericValidator.spec')
 
 // DatabaseConnections
 mocha.addFile('lib/databaseConnections/MySqlDatabaseConnection.spec')

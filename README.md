@@ -4,17 +4,20 @@
 
 # node-sql-dao
 
-**Database-Access-Objects for SQL-Databases**
+**Generate a Database-Access-Object directly from a database table.**
+
+Including validators (e.g. required or numeric) and CRUD methods.
 
 # Features
-- Generate a model directly from Database
-- CRUD without writing sql
-- Model validation
+
+- Generate model-class directly from Database
+- Create, Read, Update, Delete without writing sql
+- Model validation (required, length, numeric, ...)
 - Extendible: add own validators, databases, etc.
 
 **TODO:**
 
-- More default validators based on column types
+- Date-Validator
 - Handle relations
 - Add more Databases (for now only **MySQL**)
 
