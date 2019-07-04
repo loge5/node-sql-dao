@@ -28,7 +28,6 @@
     "mysql": "^2.16.0"
   },
   "devDependencies": {
-    "@types/node": "^11.11.3",
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
