@@ -2,8 +2,6 @@ var Mocha = require('mocha')
 var mocha = new Mocha({})
 mocha.addFile('lib/DatabaseAccessObject.spec')
 mocha.addFile('lib/DatabaseConnection.spec')
-mocha.addFile('lib/testData/Example.spec')
-mocha.addFile('lib/testData/Order.spec')
 mocha.addFile('lib/Model.spec')
 mocha.addFile('lib/Validator.spec')
 mocha.addFile('lib/WhereClause.spec')
@@ -29,5 +27,9 @@ mocha.addFile('lib/tableShema/TableShema.spec')
 
 // Generator
 mocha.addFile('lib/Generator.spec')
+
+// Example DatabaseAccessObjects
+mocha.addFile('lib/testData/Example.spec')
+mocha.addFile('lib/testData/Order.spec')
 
 mocha.run()
