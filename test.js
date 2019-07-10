@@ -7,6 +7,7 @@ mocha.addFile('lib/testData/Order.spec')
 mocha.addFile('lib/Model.spec')
 mocha.addFile('lib/Validator.spec')
 mocha.addFile('lib/WhereClause.spec')
+mocha.addFile('lib/Join.spec')
 
 // Validators
 mocha.addFile('lib/validators/RequiredValidator.spec')
