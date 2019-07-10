@@ -23,7 +23,7 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `item` (
-  `id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -31,13 +31,15 @@ CREATE TABLE `item` (
 CREATE TABLE `item_order` (
   `itemId` int(10) unsigned NOT NULL,
   `orderId` int(10) unsigned NOT NULL,
-  KEY `item_order_item_FK` (`itemId`),
   KEY `item_order_order_FK` (`orderId`),
-  CONSTRAINT `item_order_item_FK` FOREIGN KEY (`itemId`) REFERENCES `item` (`id`),
+  KEY `item_order_FK` (`itemId`),
+  CONSTRAINT `item_order_FK` FOREIGN KEY (`itemId`) REFERENCES `item` (`id`),
   CONSTRAINT `item_order_order_FK` FOREIGN KEY (`orderId`) REFERENCES `order` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 INSERT INTO `customer` (id, name) VALUES(1, 'Testi Tester');
 INSERT INTO `order` (id, customerId, amount) VALUES(1, 1, 10);
+INSERT INTO `item` (id, description) VALUES(1, 'Mate');
+INSERT INTO `item_order` (itemId, orderId) VALUES(1, 1);
 

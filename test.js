@@ -16,14 +16,15 @@ mocha.addFile('lib/validators/NumericValidator.spec')
 // DatabaseConnections
 mocha.addFile('lib/databaseConnections/MySqlDatabaseConnection.spec')
 
+// Releations
+mocha.addFile('lib/relation/Relation.spec')
+mocha.addFile('lib/relation/RelationHasMany.spec')
+mocha.addFile('lib/relation/RelationHasOne.spec')
+mocha.addFile('lib/relation/RelationManyMany.spec')
+
 // TableShema
 mocha.addFile('lib/tableShema/Column.spec')
 mocha.addFile('lib/tableShema/TableShema.spec')
-mocha.addFile('lib/tableShema/Relation.spec')
-mocha.addFile('lib/tableShema/RelationBelongsTo.spec')
-mocha.addFile('lib/tableShema/RelationHasMany.spec')
-mocha.addFile('lib/tableShema/RelationHasOne.spec')
-mocha.addFile('lib/tableShema/RelationManyMany.spec')
 
 // Generator
 mocha.addFile('lib/Generator.spec')
