@@ -1,12 +1,12 @@
-const DatabaseAccessObject = require('../DatabaseAccessObject')
-const RequiredValidator = require('../validators/RequiredValidator')
-const NumericValidator = require('../validators/NumericValidator')
-const LengthValidator = require('../validators/LengthValidator')
-const DatabaseConnection = require('../DatabaseConnection') // eslint-disable-line
-const MySqlDatabaseConnection = require('../databaseConnections/MySqlDatabaseConnection')
+const DatabaseAccessObject = require('../lib/DatabaseAccessObject')
+const RequiredValidator = require('../lib/validators/RequiredValidator')
+const NumericValidator = require('../lib/validators/NumericValidator')
+const LengthValidator = require('../lib/validators/LengthValidator')
+const DatabaseConnection = require('../lib/DatabaseConnection') // eslint-disable-line
+const MySqlDatabaseConnection = require('../lib/databaseConnections/MySqlDatabaseConnection')
 const databaseConfig = require('./db.config.js')
 
-class Item extends DatabaseAccessObject {
+class Shop extends DatabaseAccessObject {
   constructor () {
     super()
     /**
@@ -16,7 +16,7 @@ class Item extends DatabaseAccessObject {
     /**
      * @member {string}
      */
-    this.description = undefined
+    this.name = undefined
   }
 
   /**
@@ -25,7 +25,8 @@ class Item extends DatabaseAccessObject {
   initValidators () {
     this.addValidator('id', new RequiredValidator())
     this.addValidator('id', new NumericValidator(0))
-    this.addValidator('description', new LengthValidator(0, 100))
+    this.addValidator('name', new RequiredValidator())
+    this.addValidator('name', new LengthValidator(0, 100))
   }
 
   /**
@@ -33,7 +34,7 @@ class Item extends DatabaseAccessObject {
    * @returns {string[]}
    */
   static getAttributeNames () {
-    return ['id', 'description']
+    return ['id', 'name']
   }
 
   /**
@@ -47,15 +48,15 @@ class Item extends DatabaseAccessObject {
    * @returns {string}
    */
   static getTableName () {
-    return 'item'
+    return 'shop'
   }
 
   /**
    * @returns {string}
    */
   static getPrimaryKey () {
-    return undefined
+    return 'id'
   }
 }
 
-module.exports = Item
+module.exports = Shop

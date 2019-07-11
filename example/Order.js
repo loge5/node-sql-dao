@@ -1,12 +1,16 @@
-const DatabaseAccessObject = require('../DatabaseAccessObject')
-const RequiredValidator = require('../validators/RequiredValidator')
-const NumericValidator = require('../validators/NumericValidator')
-const DatabaseConnection = require('../DatabaseConnection') // eslint-disable-line
-const MySqlDatabaseConnection = require('../databaseConnections/MySqlDatabaseConnection')
-const RelationHasOne = require('../relation/RelationHasOne')
-const RelationManyMany = require('../relation/RelationManyMany')
+const DatabaseAccessObject = require('../lib/DatabaseAccessObject')
+const RequiredValidator = require('../lib/validators/RequiredValidator')
+const NumericValidator = require('../lib/validators/NumericValidator')
+const DatabaseConnection = require('../lib/DatabaseConnection') // eslint-disable-line
+const MySqlDatabaseConnection = require('../lib/databaseConnections/MySqlDatabaseConnection')
+const RelationBelongsTo = require('../lib/relation/RelationBelongsTo')
+const RelationHasOne = require('../lib/relation/RelationHasOne')
+const RelationHasMany = require('../lib/relation/RelationHasMany')
+const RelationManyMany = require('../lib/relation/RelationManyMany')
 const Customer = require('./Customer')
 const Item = require('./Item')
+const Remark = require('./Remark')
+const Shop = require('./Shop')
 const databaseConfig = require('./db.config')
 
 class Order extends DatabaseAccessObject {
@@ -19,15 +23,27 @@ class Order extends DatabaseAccessObject {
     /**
      * @member {integer}
      */
+    this.shopId = undefined
+    /**
+     * @member {integer}
+     */
     this.customerId = undefined
     /**
      * @member {double}
      */
     this.amount = undefined
     /**
+     * @member {Shop}
+     */
+    this.shop = undefined
+    /**
      * @member {Customer}
      */
     this.customer = undefined
+    /**
+     * @member {Item[]}
+     */
+    this.items = undefined
   }
 
   /**
@@ -36,10 +52,11 @@ class Order extends DatabaseAccessObject {
   initValidators () {
     this.addValidator('id', new RequiredValidator())
     this.addValidator('id', new NumericValidator(0))
-    this.addValidator('customerId', new RequiredValidator())
     this.addValidator('customerId', new NumericValidator(0))
     this.addValidator('amount', new RequiredValidator())
     this.addValidator('amount', new NumericValidator(Number.NEGATIVE_INFINITY))
+    this.addValidator('shop', new RequiredValidator())
+    this.addValidator('customer', new RequiredValidator())
   }
 
   /**
@@ -47,7 +64,7 @@ class Order extends DatabaseAccessObject {
    * @returns {string[]}
    */
   static getAttributeNames () {
-    return ['id', 'customerId', 'amount']
+    return ['id', 'shopId', 'customerId', 'amount']
   }
 
   /**
@@ -56,7 +73,9 @@ class Order extends DatabaseAccessObject {
    */
   static getRelations () {
     return [
+      new RelationBelongsTo('shop', 'shopId', Shop, 'id'),
       new RelationHasOne('customer', 'customerId', Customer, 'id'),
+      new RelationHasMany('remarks', 'id', Remark, 'orderId'),
       new RelationManyMany('items', 'id', Item, 'id', 'item_order', 'orderId', 'itemId')
     ]
   }
@@ -79,7 +98,7 @@ class Order extends DatabaseAccessObject {
    * @returns {string}
    */
   static getPrimaryKey () {
-    return undefined
+    return 'id'
   }
 }
 

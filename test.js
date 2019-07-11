@@ -20,6 +20,7 @@ mocha.addFile('lib/relation/Relation.spec')
 mocha.addFile('lib/relation/RelationHasMany.spec')
 mocha.addFile('lib/relation/RelationHasOne.spec')
 mocha.addFile('lib/relation/RelationManyMany.spec')
+mocha.addFile('lib/relation/RelationBelongsTo.spec')
 
 // TableShema
 mocha.addFile('lib/tableShema/Column.spec')
@@ -29,7 +30,7 @@ mocha.addFile('lib/tableShema/TableShema.spec')
 mocha.addFile('lib/Generator.spec')
 
 // Example DatabaseAccessObjects
-mocha.addFile('lib/testData/Example.spec')
-mocha.addFile('lib/testData/Order.spec')
+mocha.addFile('example/Example.spec')
+mocha.addFile('example/Order.spec')
 
-mocha.run()
+mocha.run((failures) => { process.exitCode = failures ? 1 : 0 })
