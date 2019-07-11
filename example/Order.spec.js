@@ -4,6 +4,7 @@ const expect = require('chai').expect
 const Order = require('./Order')
 const Customer = require('./Customer')
 const Shop = require('./Shop')
+const Item = require('./Item')
 
 describe('Order', () => {
   it('should be defined', () => {
@@ -23,13 +24,20 @@ describe('Order', () => {
     let customer = new Customer()
     customer.name = 'Testeroni'
     let order = new Order()
+    let item1 = new Item()
+    item1.description = 'Test'
+    let item2 = new Item()
+    item2.id = 1
+    item2.description = 'Mate'
     order.amount = 11
     order.shop = shop
     order.customer = customer
+    order.items = [item1, item2]
     order.validate()
     await order.insert()
     expect(order.id).to.be.a('number')
     expect(order.shop.id).to.be.a('number')
     expect(order.customer.id).to.be.a('number')
+    expect(order.items).has.lengthOf(2)
   })
 })
