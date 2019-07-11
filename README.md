@@ -142,7 +142,8 @@ Complete file: [./example/Order.js](./example/Order.js)
 
 ### insert
 
-* will insert any referenced objects and relations (ManyMany)
+* will insert any new referenced objects and relations (ManyMany)
+* will update existing referenced objects
 
 ### update
 
