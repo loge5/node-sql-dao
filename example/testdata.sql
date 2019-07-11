@@ -49,13 +49,3 @@ CREATE TABLE `remark` (
   `text` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-INSERT INTO `shop` (id, name) VALUES(1, 'Test Shop');
-INSERT INTO `customer` (id, name) VALUES(1, 'Testi Tester');
-INSERT INTO `order` (id, shopId, customerId, amount) VALUES(1, 1, 1, 10);
-INSERT INTO `item` (id, description) VALUES(1, 'Mate');
-INSERT INTO `item_order` (itemId, orderId) VALUES(1, 1);
-INSERT INTO `remark` (`orderId`, `text`) VALUES(1, 'extra sauce');
-INSERT INTO `remark` (`orderId`, `text`) VALUES(1, 'no garlic');
-

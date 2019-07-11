@@ -41,6 +41,10 @@ class Order extends DatabaseAccessObject {
      */
     this.customer = undefined
     /**
+     * @member {Remark[]}
+     */
+    this.remarks = undefined
+    /**
      * @member {Item[]}
      */
     this.items = undefined
