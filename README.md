@@ -135,10 +135,23 @@ class Order extends DatabaseAccessObject {
 ```
 Conplete file: [./example/Order.js](./example/Order.js)
 
-*Some things have to be considered:*
+### Find
 
-* First generate the referenced DAO (Shop, Customer)
-* Don't create recursive relations (belongsTo in Order & hasOne in Shop)
+* will fetch any referenced objects
+* ⚠️ Don't create recursive relations (e.g. belongsTo in Order & hasOne in Shop)
+
+### insert
+
+* will insert any referenced objects and relations (ManyMany)
+
+### update
+
+* will not delete referenced objects
+
+### delete
+
+* only deletes "hasMany" and relations from "ManyMany", rest could be used somewhere else
+* for other you can override the beforeDelete/afterDelete methods
 
 ## Transactions
 
