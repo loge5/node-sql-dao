@@ -68,6 +68,22 @@ describe('Order', () => {
     expect(result[0].remarks).has.lengthOf(1)
     expect(result[0].remarks[0].text).equals('Extra cheeese')
   })
+  it('update order should also update relations', async () => {
+    orderTest.amount = 12
+    orderTest.customer.name = 'Testi'
+    orderTest.remarks[0].text = 'Extra Extra cheeese'
+    orderTest.items[0].description = 'Mate!'
+    orderTest.shop.name = 'Test Shop2'
+    await orderTest.update()
+    let result = await Order.find(new WhereClause('id = ?', [orderTest.id]))
+    expect(result).has.length.greaterThan(0)
+    let orderCheck = result[0]
+    expect(orderCheck.amount).equals(12)
+    expect(orderTest.customer.name).equals('Testi')
+    expect(orderTest.remarks[0].text).equals('Extra Extra cheeese')
+    expect(orderTest.items[0].description).equals('Mate!')
+    expect(orderTest.shop.name).equals('Test Shop2')
+  })
   it('delete order should only delete hasMany relations', async () => {
     let affectedRows = await orderTest.delete()
     expect(affectedRows).to.be.a('number')
