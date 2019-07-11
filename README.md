@@ -49,7 +49,7 @@ Example:
 node ./node_modules/sql-dao/gen-mysql.js ./config/dbconf.js example ./lib
 ```
 
-For an example output see [./lib/testData/Example.js](./lib/testData/Example.js)
+For an example output see [./example/Example.js](./example/Example.js)
 
 # Usage
 
@@ -109,21 +109,36 @@ if (example.validate()) {
 
 ## Relations
 
-For now you can use the before/after hooks
+For defining relations you can override the `getRelations` method.
+Then `find` will automaticly load other DAO's and also on `insert, update, delte, save` the referenced object will be created/deleted.
+
+Example:
+
+![erm-image](example/erm.png "Example ERM")
 
 ```JavaScript
-const DatabaseAccessObject = require('sql-dao').DatabaseAccessObject
-const MySqlDatabaseConnection = require('sql-dao').MySqlDatabaseConnection
-
-class Example extends DatabaseAccessObject {
-  beforeDelete (transaction = undefined) {
-    // delete other entry first
-    await this.otherDao.delete(transaction)
+// ...
+class Order extends DatabaseAccessObject {
+  /**
+   * @returns {Relation[]}
+   */
+  static getRelations () {
+    return [
+      new RelationBelongsTo('shop', 'shopId', Shop, 'id'),
+      new RelationHasOne('customer', 'customerId', Customer, 'id'),
+      new RelationHasMany('remarks', 'id', Remark, 'orderId'),
+      new RelationManyMany('items', 'id', Item, 'id', 'item_order', 'orderId', 'itemId')
+    ]
   }
-
   // ...
 }
 ```
+Conplete file: [./example/Order.js](./example/Order.js)
+
+*Some things have to be considered:*
+
+* First generate the referenced DAO (Shop, Customer)
+* Don't create recursive relations (belongsTo in Order & hasOne in Shop)
 
 ## Transactions
 
