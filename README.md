@@ -135,7 +135,7 @@ class Order extends DatabaseAccessObject {
 ```
 Conplete file: [./example/Order.js](./example/Order.js)
 
-### Find
+### find
 
 * will fetch any referenced objects
 * ⚠️ Don't create recursive relations (e.g. belongsTo in Order & hasOne in Shop)
@@ -146,12 +146,18 @@ Conplete file: [./example/Order.js](./example/Order.js)
 
 ### update
 
-* will not delete referenced objects
+* will delete "hasMany" referenced objects (when removed from array)
+* will delete "ManyMany" **relations** (when removed from array)
+* will not delete missing references on "hasOne" or "belongsTo"
 
 ### delete
 
 * only deletes "hasMany" and relations from "ManyMany", rest could be used somewhere else
 * for other you can override the beforeDelete/afterDelete methods
+
+### save
+
+* `@todo`
 
 ## Transactions
 

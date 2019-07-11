@@ -13,7 +13,8 @@ let orderTest
 let itemTestExisting
 let itemTestNew
 let customerTestNew
-let remarkTest
+let remarkTest1
+let remarkTest2
 
 describe('Order', () => {
   it('should be defined', () => {
@@ -42,13 +43,15 @@ describe('Order', () => {
     customerTestNew.name = 'Testeroni'
     itemTestNew = new Item()
     itemTestNew.description = 'Pizza'
-    remarkTest = new Remark()
-    remarkTest.text = 'Extra cheeese'
+    remarkTest1 = new Remark()
+    remarkTest1.text = 'Extra cheeese'
+    remarkTest2 = new Remark()
+    remarkTest2.text = 'olives please'
     orderTest = new Order()
     orderTest.amount = 11
     orderTest.shop = shopTest
     orderTest.customer = customerTestNew
-    orderTest.remarks = [remarkTest]
+    orderTest.remarks = [remarkTest1, remarkTest2]
     orderTest.items = [itemTestExisting, itemTestNew]
     orderTest.validate()
     await orderTest.insert()
@@ -56,6 +59,7 @@ describe('Order', () => {
     expect(orderTest.shop.id).to.be.a('number')
     expect(orderTest.customer.id).to.be.a('number')
     expect(orderTest.remarks[0].id).to.be.a('number')
+    expect(orderTest.remarks[1].id).to.be.a('number')
     expect(orderTest.items).has.lengthOf(2)
   })
   it('find order should find inserted order with relations', async () => {
@@ -65,14 +69,17 @@ describe('Order', () => {
     expect(result[0].customer).to.be.instanceof(Customer)
     expect(result[0].items).has.lengthOf(2)
     expect(result[0].items[0].description).equals('Mate')
-    expect(result[0].remarks).has.lengthOf(1)
+    expect(result[0].remarks).has.lengthOf(2)
     expect(result[0].remarks[0].text).equals('Extra cheeese')
+    expect(result[0].remarks[1].text).equals('olives please')
   })
-  it('update order should also update relations', async () => {
+  it('update order should also update/remove relations', async () => {
     orderTest.amount = 12
     orderTest.customer.name = 'Testi'
     orderTest.remarks[0].text = 'Extra Extra cheeese'
+    orderTest.remarks = [orderTest.remarks[0]]
     orderTest.items[0].description = 'Mate!'
+    orderTest.items = [orderTest.items[0]]
     orderTest.shop.name = 'Test Shop2'
     await orderTest.update()
     let result = await Order.find(new WhereClause('id = ?', [orderTest.id]))
@@ -81,6 +88,9 @@ describe('Order', () => {
     expect(orderCheck.amount).equals(12)
     expect(orderTest.customer.name).equals('Testi')
     expect(orderTest.remarks[0].text).equals('Extra Extra cheeese')
+    expect(result[0].remarks).has.lengthOf(1)
+    expect(await Remark.find(new WhereClause('id = ?', [remarkTest2.id]))).has.lengthOf(0)
+    expect(orderTest.items).has.lengthOf(1)
     expect(orderTest.items[0].description).equals('Mate!')
     expect(orderTest.shop.name).equals('Test Shop2')
   })
@@ -92,7 +102,7 @@ describe('Order', () => {
     expect(await Item.find(new WhereClause('id = ?', [itemTestExisting.id]))).has.lengthOf(1)
     expect(await Item.find(new WhereClause('id = ?', [itemTestNew.id]))).has.lengthOf(1)
     expect(await Customer.find(new WhereClause('id = ?', [customerTestNew.id]))).has.lengthOf(1)
-    expect(await Remark.find(new WhereClause('id = ?', [remarkTest.id]))).has.lengthOf(0)
+    expect(await Remark.find(new WhereClause('id = ?', [remarkTest1.id]))).has.lengthOf(0)
   })
   it('delete references (Shop&Item&Customer) should unset id', async () => {
     expect(await shopTest.delete(), 'effectedRows').equals(1)
