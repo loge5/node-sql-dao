@@ -148,7 +148,7 @@ Complete file: [./example/Order.js](./example/Order.js)
 ### update
 
 * will insert referenced objects with undefined primary key
-* will update referenced objects with defined primray key
+* will update referenced objects with defined primary key
 * will delete "hasMany" referenced objects (when removed from array)
 * will delete "ManyMany" **relations** (when removed from array)
 * will not delete missing referenced objects on "hasOne" or "belongsTo"
@@ -160,7 +160,10 @@ Complete file: [./example/Order.js](./example/Order.js)
 
 ### save
 
-* `@todo`
+* will save (insert on duplicate update) referenced objects
+* will delete "hasMany" referenced objects (when removed from array)
+* will delete "ManyMany" **relations** (when removed from array)
+* will not delete missing referenced objects on "hasOne" or "belongsTo"
 
 ## Transactions
 

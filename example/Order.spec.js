@@ -12,9 +12,12 @@ let shopTest
 let orderTest
 let itemTestExisting
 let itemTestNew
+let itemTestNew2
 let customerTestNew
+let customerTestNew2
 let remarkTest1
 let remarkTest2
+let remarkNew
 
 describe('Order', () => {
   it('should be defined', () => {
@@ -104,6 +107,24 @@ describe('Order', () => {
     expect(await Customer.find(new WhereClause('id = ?', [customerTestNew.id]))).has.lengthOf(1)
     expect(await Remark.find(new WhereClause('id = ?', [remarkTest1.id]))).has.lengthOf(0)
   })
+  it('save order should also insert also relations', async () => {
+    remarkNew = new Remark()
+    remarkNew.text = 'test'
+    customerTestNew2 = new Customer()
+    customerTestNew2.name = 'Testi Mc Testface'
+    itemTestNew2 = new Item()
+    itemTestNew2.description = 'Test test test'
+    let order = new Order()
+    order.amount = 1337
+    order.shop = shopTest
+    order.customer = customerTestNew2
+    order.remarks = [remarkNew]
+    order.items = [itemTestNew, itemTestNew2]
+    await order.save() // insert
+    expect(order.id).to.be.a('number')
+    await order.save() // update (because on dulicate)
+    await order.delete()
+  })
   it('delete references (Shop&Item&Customer) should unset id', async () => {
     expect(await shopTest.delete(), 'effectedRows').equals(1)
     expect(shopTest.id).to.be.a('undefined')
@@ -113,6 +134,10 @@ describe('Order', () => {
     expect(itemTestNew.id).to.be.a('undefined')
     expect(await customerTestNew.delete(), 'effectedRows').equals(1)
     expect(customerTestNew.id).to.be.a('undefined')
+    expect(await customerTestNew2.delete(), 'effectedRows').equals(1)
+    expect(customerTestNew2.id).to.be.a('undefined')
+    expect(await itemTestNew2.delete(), 'effectedRows').equals(1)
+    expect(itemTestNew2.id).to.be.a('undefined')
   })
   it('after delete references (Shop&Item&Customer), nothing should be found', async () => {
     expect(await Shop.find(new WhereClause('id = ?', [shopTest.id]))).has.lengthOf(0)
