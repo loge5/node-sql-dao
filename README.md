@@ -49,7 +49,7 @@ class Example extends DatabaseAccessObject {
 }
 ```
 
-**Take a look on a complete file: [./example/Example.js](./example/Example.js)**
+**Take a look on a complete file: [./Example.js](./Example.js)**
 
 # Methods (CRUD & Validate)
 
@@ -211,7 +211,7 @@ Example:
 node ./node_modules/sql-dao/gen-mysql.js ./config/dbconf.js example ./lib
 ```
 
-For an example output see [./example/Example.js](./example/Example.js)
+For an example output see [./Example.js](./Example.js)
 
 # Contributing & Development
 

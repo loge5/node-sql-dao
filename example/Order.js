@@ -72,7 +72,6 @@ class Order extends DatabaseAccessObject {
   }
 
   /**
-   * Overwrite to addRelation's
    * @returns {Relation[]}
    */
   static getRelations () {
