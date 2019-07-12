@@ -138,10 +138,11 @@ Complete file: [./example/Order.js](./example/Order.js)
 
 ## Notices about relations
 
+**⚠️ Don't create recursive relations (e.g. belongsTo in Order & hasOne in Shop)**
+
 ### find
 
 * will fetch any referenced objects
-* ⚠️ Don't create recursive relations (e.g. belongsTo in Order & hasOne in Shop)
 
 ### insert
 
@@ -189,7 +190,7 @@ try {
 
 # Generator
 
-First a create config file for database (see [https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql)):
+First create a config file for database (see [https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql)):
 
 ```javascript
 // just an example
