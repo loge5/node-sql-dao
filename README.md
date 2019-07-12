@@ -4,54 +4,56 @@
 
 # node-sql-dao
 
-**Generate a Database-Access-Object directly from a database table.**
+**Data access objects providing an abstract interface to persistence. So you can use them as usual Objects (in OOP) and simply call the "save" method to store them, without messing around with database specific things like SQL statements.**
 
-Including validators (e.g. required or numeric) and CRUD methods.
+# Table of Contents
+1. [Features](#Features)
+2. [Installation](#Installation)
+3. [Example DatabaseAccessObject](#Example-DatabaseAccessObject)
+4. [Methods (CRUD & Validate)](#Methods-(CRUD-&-Validate))
+5. [Relations](#Relations)
+6. [Transactions](#Transactions)
+7. [Generator](#Generator)
+8. [Contributing & Development](#Contributing-&-Development)
 
 # Features
 
-- Generate model-class directly from Database
-- Create, Read, Update, Delete without writing sql
+- The *abstract* `DatabaseAccessObject` class providing easy methods for CRUD (create, read, update, delete)
+- Also create, read, update, delete relations
 - Model validation (required, length, numeric, ...)
 - Extendible: add own validators, databases, etc.
+- support transactions (rollback)
+- **Generate the DAO directly from your database schema**
 
-**TODO:**
+## TODOs
 
 - Date-Validator
-- Handle relations
-- Add more Databases (for now only **MySQL**)
+- Generate relations
+- Add more databases (for now only **MySQL**)
 
-# Install
+# Installation
 
-```npm install --save sql-dao```
+```
+npm install sql-dao
+```
+# Example DatabaseAccessObject
 
-# Generate a DatabaseAccessObject from Database
+Just extends the `DatabaseAccessObject`
 
-create config file for database (see [https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql)):
+```javascript
+const DatabaseAccessObject = require('dao-sql').DatabaseAccessObject
+// ... more includes ...
 
-```JavaScript
-// just an example
-module.exports = {
-  host: '127.0.0.1',
-  user: 'root',
-  password: '',
-  database: 'dao_example'
+class Example extends DatabaseAccessObject {
+  // override the abstact methods
 }
 ```
 
-then call from command line:
-```Shell
-node ./node_modules/sql-dao/gen-mysql.js <dbConfigFile> <tableName> <targetPath>
-```
+**Take a look on a complete file: [./example/Example.js](./example/Example.js)**
 
-Example:
-```Shell
-node ./node_modules/sql-dao/gen-mysql.js ./config/dbconf.js example ./lib
-```
+# Methods (CRUD & Validate)
 
-For an example output see [./example/Example.js](./example/Example.js)
-
-# Usage
+The DatabaseAccessObject provides easy methods for CRUD.
 
 ## Create
 
@@ -107,12 +109,11 @@ if (example.validate()) {
 }
 ```
 
-## Relations
+# Relations
 
 For defining relations you can override the `getRelations` method.
-Then `find` will automaticly load other DAO's and also on `insert, update, delte, save` the referenced object will be created/deleted.
 
-Example:
+**Example:**
 
 ![erm-image](example/erm.png "Example ERM")
 
@@ -134,6 +135,8 @@ class Order extends DatabaseAccessObject {
 }
 ```
 Complete file: [./example/Order.js](./example/Order.js)
+
+## Notices about relations
 
 ### find
 
@@ -165,7 +168,7 @@ Complete file: [./example/Order.js](./example/Order.js)
 * will delete "ManyMany" **relations** (when removed from array)
 * will not delete missing referenced objects on "hasOne" or "belongsTo"
 
-## Transactions
+# Transactions
 
 ```JavaScript
 /*
@@ -184,8 +187,33 @@ try {
 }
 ```
 
+# Generator
 
-# Contributing / Development
+create config file for database (see [https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql)):
+
+```JavaScript
+// just an example
+module.exports = {
+  host: '127.0.0.1',
+  user: 'root',
+  password: '',
+  database: 'dao_example'
+}
+```
+
+then call from command line:
+```Shell
+node ./node_modules/sql-dao/gen-mysql.js <dbConfigFile> <tableName> <targetPath>
+```
+
+Example:
+```Shell
+node ./node_modules/sql-dao/gen-mysql.js ./config/dbconf.js example ./lib
+```
+
+For an example output see [./example/Example.js](./example/Example.js)
+
+# Contributing & Development
 
 ## Style
 
