@@ -25,6 +25,7 @@
   "author": "Rolf Loges",
   "license": "MIT",
   "dependencies": {
+    "commander": "^2.20.0",
     "mysql": "^2.16.0"
   },
   "devDependencies": {

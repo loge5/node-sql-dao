@@ -189,7 +189,7 @@ try {
 
 # Generator
 
-create config file for database (see [https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql)):
+First a create config file for database (see [https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql)):
 
 ```javascript
 // just an example
@@ -201,14 +201,23 @@ module.exports = {
 }
 ```
 
-then call from command line:
-```Shell
-node ./node_modules/sql-dao/gen-mysql.js <path to dbConfigFile> <tableName> <targetPath>
+Then call the generator script.
+
+
+Usage:
+```shell
+Usage: gen-mysql [options]
+
+Options:
+  -c, --config <path>       path to db config file
+  -t, --table <name>        table name (otherwise all)
+  -d, --destination <path>  path where files should be created (default: ".")
+  -h, --help                output usage information
 ```
 
 Example:
-```Shell
-node ./node_modules/sql-dao/gen-mysql.js ./config/dbconf.js example ./lib
+```shell
+$ node ./node_modules/sql-dao/gen-mysql.js -c ./config/db.config.js -t example -d ./lib
 ```
 
 For an example output see [./Example.js](./Example.js)
