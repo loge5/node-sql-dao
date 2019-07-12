@@ -27,8 +27,8 @@
 
 ## TODOs
 
-- Date-Validator
 - Generate relations
+- Date-Validator
 - Add more databases (for now only **MySQL**)
 
 # Installation
@@ -57,7 +57,7 @@ The DatabaseAccessObject provides easy methods for CRUD.
 
 ## Create
 
-```JavaScript
+```javascript
 let example = new Example()
 example.name = 'Test'
 await example.insert()
@@ -65,7 +65,7 @@ console.log('inserted with PK: ' + example.id)
 ```
 
 ## Read
-```JavaScript
+```javascript
 // find all
 let examples = await Example.find()
 
@@ -75,7 +75,7 @@ let examples2 = await Example.find(whereClause)
 ```
 ## Update
 
-```JavaScript
+```javascript
 let example = new Example()
 example.id = 1 // PrivateKey
 example.name = 'Test2'
@@ -92,14 +92,14 @@ await example.save()
 
 ## Delete
 
-```JavaScript
+```javascript
 let example = new Example()
 example.id = 1 // PrivateKey
 await example.delete()
 ```
 
 ## Validate
-```JavaScript
+```javascript
 let example = new Example()
 example.name = 'Test'
 if (example.validate()) {
@@ -117,7 +117,7 @@ For defining relations you can override the `getRelations` method.
 
 ![erm-image](example/erm.png "Example ERM")
 
-```JavaScript
+```javascript
 // ...
 class Order extends DatabaseAccessObject {
   /**
@@ -170,7 +170,7 @@ Complete file: [./example/Order.js](./example/Order.js)
 
 # Transactions
 
-```JavaScript
+```javascript
 /*
  * When an statement fails, rollback previous statements
  */
@@ -191,7 +191,7 @@ try {
 
 create config file for database (see [https://www.npmjs.com/package/mysql](https://www.npmjs.com/package/mysql)):
 
-```JavaScript
+```javascript
 // just an example
 module.exports = {
   host: '127.0.0.1',
@@ -203,7 +203,7 @@ module.exports = {
 
 then call from command line:
 ```Shell
-node ./node_modules/sql-dao/gen-mysql.js <dbConfigFile> <tableName> <targetPath>
+node ./node_modules/sql-dao/gen-mysql.js <path to dbConfigFile> <tableName> <targetPath>
 ```
 
 Example:
