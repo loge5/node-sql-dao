@@ -1,12 +1,12 @@
-const DatabaseAccessObject = require('../DatabaseAccessObject')
-const RequiredValidator = require('../validators/RequiredValidator')
-const NumericValidator = require('../validators/NumericValidator')
-const LengthValidator = require('../validators/LengthValidator')
-const DatabaseConnection = require('../DatabaseConnection') // eslint-disable-line
-const MySqlDatabaseConnection = require('../databaseConnections/MySqlDatabaseConnection')
-const dbConfig = require('./db.config')
+const DatabaseAccessObject = require('../lib/DatabaseAccessObject')
+const RequiredValidator = require('../lib/validators/RequiredValidator')
+const NumericValidator = require('../lib/validators/NumericValidator')
+const LengthValidator = require('../lib/validators/LengthValidator')
+const DatabaseConnection = require('../lib/DatabaseConnection') // eslint-disable-line
+const MySqlDatabaseConnection = require('../lib/databaseConnections/MySqlDatabaseConnection')
+const databaseConfig = require('./db.config.js')
 
-class Example extends DatabaseAccessObject {
+class Customer extends DatabaseAccessObject {
   constructor () {
     super()
     /**
@@ -17,10 +17,6 @@ class Example extends DatabaseAccessObject {
      * @member {string}
      */
     this.name = undefined
-    /**
-     * @member {Date}
-     */
-    this.created = undefined
   }
 
   /**
@@ -29,6 +25,7 @@ class Example extends DatabaseAccessObject {
   initValidators () {
     this.addValidator('id', new RequiredValidator())
     this.addValidator('id', new NumericValidator(0))
+    this.addValidator('name', new RequiredValidator())
     this.addValidator('name', new LengthValidator(0, 100))
   }
 
@@ -37,21 +34,21 @@ class Example extends DatabaseAccessObject {
    * @returns {string[]}
    */
   static getAttributeNames () {
-    return ['id', 'name', 'created']
+    return ['id', 'name']
   }
 
   /**
    * @returns {DatabaseConnection}
    */
   static getDatabaseConnection () {
-    return new MySqlDatabaseConnection(dbConfig)
+    return new MySqlDatabaseConnection(databaseConfig)
   }
 
   /**
    * @returns {string}
    */
   static getTableName () {
-    return 'example'
+    return 'customer'
   }
 
   /**
@@ -62,4 +59,4 @@ class Example extends DatabaseAccessObject {
   }
 }
 
-module.exports = Example
+module.exports = Customer
