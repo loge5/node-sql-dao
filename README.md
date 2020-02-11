@@ -41,7 +41,7 @@ npm install sql-dao
 Just extends the `DatabaseAccessObject`
 
 ```javascript
-const DatabaseAccessObject = require('dao-sql').DatabaseAccessObject
+const DatabaseAccessObject = require('sql-dao').DatabaseAccessObject
 // ... more includes ...
 
 class Example extends DatabaseAccessObject {
