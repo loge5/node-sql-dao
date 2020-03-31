@@ -5,7 +5,7 @@ const NumericValidator = require('../lib/validators/NumericValidator')
 const LengthValidator = require('../lib/validators/LengthValidator')
 const DatabaseConnection = require('../lib/DatabaseConnection') // eslint-disable-line
 const MySqlDatabaseConnection = require('../lib/databaseConnections/MySqlDatabaseConnection')
-const dbConfig = require('./db.config')
+const databaseConfig = require('./db.config')
 
 class Example extends DatabaseAccessObject {
   constructor () {
@@ -28,7 +28,6 @@ class Example extends DatabaseAccessObject {
    * set up validators
    */
   initValidators () {
-    this.addValidator('id', new RequiredValidator())
     this.addValidator('id', new NumericValidator(0))
     this.addValidator('name', new RequiredValidator())
     this.addValidator('name', new LengthValidator(0, 100))
@@ -43,10 +42,17 @@ class Example extends DatabaseAccessObject {
   }
 
   /**
-   * @returns {DatabaseConnection}
+   * @returns {Relation[]}
+   */
+  static getRelations () {
+    return []
+  }
+
+  /**
+   * @returns {MySqlDatabaseConnection}
    */
   static getDatabaseConnection () {
-    return new MySqlDatabaseConnection(dbConfig)
+    return new MySqlDatabaseConnection(databaseConfig)
   }
 
   /**

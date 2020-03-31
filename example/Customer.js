@@ -23,7 +23,6 @@ class Customer extends DatabaseAccessObject {
    * set up validators
    */
   initValidators () {
-    this.addValidator('id', new RequiredValidator())
     this.addValidator('id', new NumericValidator(0))
     this.addValidator('name', new RequiredValidator())
     this.addValidator('name', new LengthValidator(0, 100))
@@ -38,7 +37,14 @@ class Customer extends DatabaseAccessObject {
   }
 
   /**
-   * @returns {DatabaseConnection}
+   * @returns {Relation[]}
+   */
+  static getRelations () {
+    return []
+  }
+
+  /**
+   * @returns {MySqlDatabaseConnection}
    */
   static getDatabaseConnection () {
     return new MySqlDatabaseConnection(databaseConfig)

@@ -12,7 +12,7 @@ describe('Example', () => {
   it('validate should return false and set errors', () => {
     const model = new Example()
     expect(model.validate()).to.equal(false)
-    expect(model.errors).to.have.lengthOf(2)
+    expect(model.errors).to.have.lengthOf(1)
     model.id = 1
     expect(model.validate()).to.equal(false)
     expect(model.errors).to.have.lengthOf(1)

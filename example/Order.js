@@ -54,13 +54,13 @@ class Order extends DatabaseAccessObject {
    * set up validators
    */
   initValidators () {
-    this.addValidator('id', new RequiredValidator())
     this.addValidator('id', new NumericValidator(0))
+    this.addValidator('shopId', new RequiredValidator())
+    this.addValidator('shopId', new NumericValidator(0))
+    this.addValidator('customerId', new RequiredValidator())
     this.addValidator('customerId', new NumericValidator(0))
     this.addValidator('amount', new RequiredValidator())
     this.addValidator('amount', new NumericValidator(Number.NEGATIVE_INFINITY))
-    this.addValidator('shop', new RequiredValidator())
-    this.addValidator('customer', new RequiredValidator())
   }
 
   /**
@@ -84,7 +84,7 @@ class Order extends DatabaseAccessObject {
   }
 
   /**
-   * @returns {DatabaseConnection}
+   * @returns {MySqlDatabaseConnection}
    */
   static getDatabaseConnection () {
     return new MySqlDatabaseConnection(databaseConfig)
