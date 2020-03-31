@@ -30,6 +30,7 @@ class Example extends DatabaseAccessObject {
   initValidators () {
     this.addValidator('id', new RequiredValidator())
     this.addValidator('id', new NumericValidator(0))
+    this.addValidator('name', new RequiredValidator())
     this.addValidator('name', new LengthValidator(0, 100))
   }
 
