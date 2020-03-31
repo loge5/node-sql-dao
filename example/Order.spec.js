@@ -34,10 +34,10 @@ describe('Order', () => {
     expect(itemTestExisting.id).to.be.a('number')
   })
   it('find references (Shop&Item) should find shop with same id', async () => {
-    let shops = await Shop.find(new WhereClause('id = ?', [shopTest.id]))
+    const shops = await Shop.find(new WhereClause('id = ?', [shopTest.id]))
     expect(shops[0]).to.be.instanceof(Shop)
     expect(shops[0].id).to.equals(shopTest.id)
-    let items = await Item.find(new WhereClause('id = ?', [itemTestExisting.id]))
+    const items = await Item.find(new WhereClause('id = ?', [itemTestExisting.id]))
     expect(items[0]).to.be.instanceof(Item)
     expect(items[0].id).to.equals(itemTestExisting.id)
   })
@@ -66,7 +66,7 @@ describe('Order', () => {
     expect(orderTest.items).has.lengthOf(2)
   })
   it('find order should find inserted order with relations', async () => {
-    let result = await Order.find(new WhereClause('id = ?', [orderTest.id]))
+    const result = await Order.find(new WhereClause('id = ?', [orderTest.id]))
     expect(result).has.length.greaterThan(0)
     expect(result[0].shop.name).equals(shopTest.name)
     expect(result[0].customer).to.be.instanceof(Customer)
@@ -85,9 +85,9 @@ describe('Order', () => {
     orderTest.items = [orderTest.items[0]]
     orderTest.shop.name = 'Test Shop2'
     await orderTest.update()
-    let result = await Order.find(new WhereClause('id = ?', [orderTest.id]))
+    const result = await Order.find(new WhereClause('id = ?', [orderTest.id]))
     expect(result).has.length.greaterThan(0)
-    let orderCheck = result[0]
+    const orderCheck = result[0]
     expect(orderCheck.amount).equals(12)
     expect(orderTest.customer.name).equals('Testi')
     expect(orderTest.remarks[0].text).equals('Extra Extra cheeese')
@@ -98,7 +98,7 @@ describe('Order', () => {
     expect(orderTest.shop.name).equals('Test Shop2')
   })
   it('delete order should only delete hasMany relations', async () => {
-    let affectedRows = await orderTest.delete()
+    const affectedRows = await orderTest.delete()
     expect(affectedRows).to.be.a('number')
     expect(affectedRows).to.be.greaterThan(0)
     expect(await Shop.find(new WhereClause('id = ?', [shopTest.id]))).has.lengthOf(1)
@@ -114,7 +114,7 @@ describe('Order', () => {
     customerTestNew2.name = 'Testi Mc Testface'
     itemTestNew2 = new Item()
     itemTestNew2.description = 'Test test test'
-    let order = new Order()
+    const order = new Order()
     order.amount = 1337
     order.shop = shopTest
     order.customer = customerTestNew2

@@ -22,6 +22,7 @@ class Example extends DatabaseAccessObject {
      */
     this.created = undefined
   }
+
   /**
    * set up validators
    */
@@ -31,6 +32,7 @@ class Example extends DatabaseAccessObject {
     this.addValidator('name', new RequiredValidator())
     this.addValidator('name', new LengthValidator(0, 100))
   }
+
   /**
    * Attributes with should be validated (or stored in db)
    * @returns {string[]}
@@ -38,24 +40,28 @@ class Example extends DatabaseAccessObject {
   static getAttributeNames () {
     return ['id', 'name', 'created']
   }
+
   /**
    * @returns {Relation[]}
    */
   static getRelations () {
     return []
   }
+
   /**
     * @returns {MySqlDatabaseConnection}
     */
   static getDatabaseConnection () {
     return new MySqlDatabaseConnection(databaseConfig)
   }
+
   /**
    * @returns {string}
    */
   static getTableName () {
     return 'example'
   }
+
   /**
    * @returns {string}
    */

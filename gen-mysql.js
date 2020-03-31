@@ -23,14 +23,14 @@ if (program.table) {
 }
 
 async function run (tableNames, dbConfigPath, targetPath) {
-  let testDbConnection = new MySqlDatabaseConnection(dbConfig)
+  const testDbConnection = new MySqlDatabaseConnection(dbConfig)
   if (tableNames.length === 0) {
     tableNames = await testDbConnection.getTableNames()
   }
-  for (let tableName of tableNames) {
-    let tableShema = await testDbConnection.getTableShema(tableName)
-    let generator = new Generator()
-    let classContent = generator.createClass(tableShema, dbConfigPath, 'MySqlDatabaseConnection')
+  for (const tableName of tableNames) {
+    const tableShema = await testDbConnection.getTableShema(tableName)
+    const generator = new Generator()
+    const classContent = generator.createClass(tableShema, dbConfigPath, 'MySqlDatabaseConnection')
     fs.writeFileSync(path.join(targetPath, generator.createClassName(tableName)) + '.js', classContent)
   }
 }
