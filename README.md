@@ -227,7 +227,7 @@ For an example output see [./Example.js](./Example.js)
 
 ## Style
 
-[https://github.com/standard/standard](https://github.com/standard/standards)
+[https://github.com/standard/standard](https://github.com/standard/standard)
 
 ## Testing
 
@@ -238,3 +238,11 @@ Run mocha tests:
 Check code coverage (creates "./coverage/index.html"):
 
 `npm run-script cover`
+
+## Release
+
+Using: [https://github.com/conventional-changelog/standard-version](https://github.com/conventional-changelog/standard-version)
+
+On master branch:
+
+`npm run release`
