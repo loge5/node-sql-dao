@@ -1,0 +1,16 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 0.10.1 (2020-03-31)
+
+
+### Features
+
+* update standard-format in generator ouptut ([d9e6ce5](https://github.com/loge5/node-sql-dao/commit/d9e6ce5568fa8ef7719a81a5374edcc8bcf2b8e5))
+
+
+### Bug Fixes
+
+* length and numeric validator ([b05b5aa](https://github.com/loge5/node-sql-dao/commit/b05b5aa98efd02a4e4adec7325d37ca79996fb4e))
+* model validation ([574d48f](https://github.com/loge5/node-sql-dao/commit/574d48f942420446e33d3398f98b4d8f3c435747))
