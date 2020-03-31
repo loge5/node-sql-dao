@@ -21,11 +21,14 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `shopId` int(10) unsigned NOT NULL,
   `customerId` int(10) unsigned NOT NULL,
   `amount` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_FK` (`customerId`),
-  CONSTRAINT `order_FK` FOREIGN KEY (`customerId`) REFERENCES `customer` (`id`)
+  KEY `order_FK_1` (`shopId`),
+  CONSTRAINT `order_FK` FOREIGN KEY (`customerId`) REFERENCES `customer` (`id`),
+  CONSTRAINT `order_FK_1` FOREIGN KEY (`shopId`) REFERENCES `shop` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `item` (
