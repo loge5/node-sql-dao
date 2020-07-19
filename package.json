@@ -28,7 +28,7 @@
   "author": "Rolf Loges",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.20.0",
+    "commander": "^5.1.0",
     "mysql": "^2.16.0"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
     "standard": "^14.3.4",
-    "standard-version": "^8.0.0"
+    "standard-version": "^8.0.2"
   },
   "standard": {
     "ignore": [
