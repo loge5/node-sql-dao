@@ -21,14 +21,14 @@
 - The *abstract* `DatabaseAccessObject` class providing easy methods for CRUD (create, read, update, delete)
 - Also create, read, update, delete relations
 - Model validation (required, length, numeric, ...)
-- Extendible: add own validators, databases, etc.
-- support transactions (rollback)
+- Extensible: add own validators, databases, etc.
+- Supports transactions (rollback)
 - **Generate the DAO directly from your database schema**
 
 ## TODOs
 
 - Generate relations
-- Date-Validator
+- Add more validators (e.g. date)
 - Add more databases (for now only **MySQL**)
 
 # Installation
