@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.4](https://github.com/loge5/node-sql-dao/compare/v0.11.3...v0.11.4) (2021-01-25)
+
+
+### Features
+
+* made onValues of join optional ([965dcb3](https://github.com/loge5/node-sql-dao/commit/965dcb32f815fe2eed6dfcb6d171352c6ee4f8cd))
+
+
+### Bug Fixes
+
+* join in mysql ([3996f56](https://github.com/loge5/node-sql-dao/commit/3996f56f9ab70065761081c01f27054e4137e7c8))
+
 ### [0.11.3](https://github.com/loge5/node-sql-dao/compare/v0.11.2...v0.11.3) (2021-01-25)
 
 
