@@ -72,6 +72,11 @@ let examples = await Example.find()
 // find some
 let whereClause = new WhereClause('?? = ?', ['name','Test']) // will prepare params
 let examples2 = await Example.find(whereClause)
+
+// use model as search template
+let example = new Example()
+example.name = 'Test'
+let examples3 = await example.search()
 ```
 ## Update
 
