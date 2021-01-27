@@ -57,6 +57,14 @@ describe('Example', () => {
     await example.save()
     expect(example.id).to.be.a('number')
   })
+  it('search should find inserted model', async () => {
+    const example = new Example()
+    example.name = 'uTest2'
+    const findings = await example.search()
+    expect(findings).has.length.greaterThan(0)
+    expect(findings[0].id).to.be.a('number')
+    expect(findings[0].name).equals(example.name)
+  })
   it('delete (no pk) should hit 1 row', async () => {
     const example = new Example()
     example.name = 'uTest2'
