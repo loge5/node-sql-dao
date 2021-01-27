@@ -77,7 +77,7 @@ let examples2 = await Example.find(whereClause)
 
 ```javascript
 let example = new Example()
-example.id = 1 // PrivateKey
+example.id = 1 // PrimaryKey
 example.name = 'Test2'
 await example.update()
 
@@ -94,7 +94,7 @@ await example.save()
 
 ```javascript
 let example = new Example()
-example.id = 1 // PrivateKey
+example.id = 1 // PrimaryKey
 await example.delete()
 ```
 
