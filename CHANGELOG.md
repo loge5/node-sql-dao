@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/loge5/node-sql-dao/compare/v0.11.4...v0.12.0) (2021-01-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **release:** none
+
+### Bug Fixes
+
+* mysql transactions ([1f2cfca](https://github.com/loge5/node-sql-dao/commit/1f2cfcac8fdbec6862bcfdf7da14571700dc865e))
+
+
+* **release:** trigger major release ([89e1c3e](https://github.com/loge5/node-sql-dao/commit/89e1c3ebbe4f0e334f27d853643a62f853bca767))
+
 ### [0.11.4](https://github.com/loge5/node-sql-dao/compare/v0.11.3...v0.11.4) (2021-01-25)
 
 
