@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/loge5/node-sql-dao/compare/v1.0.0...v1.1.0) (2021-01-27)
+
+
+### Features
+
+* search with a model as template ([8e9b591](https://github.com/loge5/node-sql-dao/commit/8e9b591aa05bbe83a55be194d06a85d74f4d02a1))
+
+
+### Bug Fixes
+
+* read primary key on duplicate update ([3b52b01](https://github.com/loge5/node-sql-dao/commit/3b52b010e6687865f6cf1d0963d4b3cd576aefac))
+
 ### [1.0.0](https://github.com/loge5/node-sql-dao/compare/v0.11.4...v1.0.0) (2021-01-27)
 
 ### [0.11.4](https://github.com/loge5/node-sql-dao/compare/v0.11.3...v0.11.4) (2021-01-25)
