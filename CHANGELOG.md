@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/loge5/node-sql-dao/compare/v1.2.1...v1.2.2) (2021-01-28)
+
+
+### Bug Fixes
+
+* undefined attribute on  hasOne releation ([d10b988](https://github.com/loge5/node-sql-dao/commit/d10b988e4612c3946ebee94a6c120a962dae4e93))
+
 ### [1.2.1](https://github.com/loge5/node-sql-dao/compare/v1.2.0...v1.2.1) (2021-01-28)
 
 
