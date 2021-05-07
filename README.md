@@ -236,6 +236,11 @@ For an example output see [./Example.js](./Example.js)
 
 ## Testing
 
+Set up test database:
+
+* put config here: [./example/db.config.js](./example/db.config.js)
+* insert testdata from here: [./example/testdata.sql](./example/testdata.sql)
+
 Run mocha tests:
 
 `npm test`
