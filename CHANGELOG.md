@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/loge5/node-sql-dao/compare/v1.2.3...v1.3.0) (2021-06-29)
+
+
+### Features
+
+* DatabaseAccessObject to plain object ([a406467](https://github.com/loge5/node-sql-dao/commit/a4064674dd6886bd68a0cfbccfd84c9de294cce4))
+
 ### [1.2.3](https://github.com/loge5/node-sql-dao/compare/v1.2.2...v1.2.3) (2021-05-07)
 
 ### [1.2.2](https://github.com/loge5/node-sql-dao/compare/v1.2.1...v1.2.2) (2021-01-28)
