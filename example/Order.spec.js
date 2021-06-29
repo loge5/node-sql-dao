@@ -145,4 +145,29 @@ describe('Order', () => {
     expect(await Item.find(new WhereClause('id = ?', [itemTestNew.id]))).has.lengthOf(0)
     expect(await Customer.find(new WhereClause('id = ?', [customerTestNew.id]))).has.lengthOf(0)
   })
+  it('toPlainObject should only return attributes', () => {
+    remarkNew = new Remark()
+    remarkNew.text = 'test'
+    customerTestNew2 = new Customer()
+    customerTestNew2.name = 'Testi Mc Testface'
+    itemTestNew2 = new Item()
+    itemTestNew2.description = 'Test test test'
+    const order = new Order()
+    order.amount = 1337
+    order.shop = shopTest
+    order.customer = customerTestNew2
+    order.remarks = [remarkNew]
+    order.items = [itemTestNew, itemTestNew2]
+    const obj = order.toPlainObject()
+    expect(obj._validators).to.be.a('undefined')
+    expect(obj.errors).to.be.a('undefined')
+    expect(obj.customer._validators).to.be.a('undefined')
+    expect(obj.customer.errors).to.be.a('undefined')
+    expect(obj.items[0]._validators).to.be.a('undefined')
+    expect(obj.items[0].errors).to.be.a('undefined')
+    expect(obj.amount).equals(1337)
+    expect(obj.customer.name).equals('Testi Mc Testface')
+    expect(obj.items[0].description).equals('Pizza')
+    expect(() => order.toPlainObject(1)).to.throw(Error, 'max depth of recursion reached')
+  })
 })
