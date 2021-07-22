@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/loge5/node-sql-dao/compare/v1.3.0...v1.4.0) (2021-07-22)
+
+
+### Features
+
+* DatabaseConnection.prepareQuery ([a0c1fc2](https://github.com/loge5/node-sql-dao/commit/a0c1fc2c221dabcfb5bcf98ddb3f5bca683b3514))
+
 ## [1.3.0](https://github.com/loge5/node-sql-dao/compare/v1.2.3...v1.3.0) (2021-06-29)
 
 
