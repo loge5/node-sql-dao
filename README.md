@@ -11,10 +11,11 @@
 2. [Installation](#Installation)
 3. [Example DatabaseAccessObject](#Example-DatabaseAccessObject)
 4. [Methods (CRUD & Validate)](#Methods-(CRUD-&-Validate))
-5. [Relations](#Relations)
-6. [Transactions](#Transactions)
-7. [Generator](#Generator)
-8. [Contributing & Development](#Contributing-&-Development)
+5. [Custom Queries](#Custom-Queries)
+6. [Relations](#Relations)
+7. [Transactions](#Transactions)
+8. [Generator](#Generator)
+9. [Contributing & Development](#Contributing-&-Development)
 
 # Features
 
@@ -113,6 +114,25 @@ if (example.validate()) {
   console.error(example.errors.join("\n"))
 }
 ```
+
+# Custom Queries
+
+You could also send a custom query in the model like this:
+
+```javascript
+class Order extends DatabaseAccessObject {
+  findActLastId () {
+    const db = this.getDatabaseConnection()
+    let query = 'SELECT MAX(id) FROM ?? WHERE active = ?'
+    query = db.prepareQuery(query, ['order', 1])
+    const result = await db.sendQuery(query)
+    // parse query
+  }
+
+  // ...
+}
+```
+
 
 # Relations
 
