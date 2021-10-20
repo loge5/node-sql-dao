@@ -121,7 +121,7 @@ You could also send a custom query in the model like this:
 
 ```javascript
 class Order extends DatabaseAccessObject {
-  findActLastId () {
+  findLastId () {
     const db = this.getDatabaseConnection()
     let query = 'SELECT MAX(id) FROM ?? WHERE active = ?'
     query = db.prepareQuery(query, ['order', 1])
