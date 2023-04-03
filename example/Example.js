@@ -3,7 +3,6 @@ const DatabaseAccessObject = require('../lib/DatabaseAccessObject')
 const RequiredValidator = require('../lib/validators/RequiredValidator')
 const NumericValidator = require('../lib/validators/NumericValidator')
 const LengthValidator = require('../lib/validators/LengthValidator')
-const DatabaseConnection = require('../lib/DatabaseConnection') // eslint-disable-line
 const MySqlDatabaseConnection = require('../lib/databaseConnections/MySqlDatabaseConnection')
 const databaseConfig = require('./db.config')
 

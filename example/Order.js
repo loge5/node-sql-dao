@@ -1,7 +1,6 @@
 const DatabaseAccessObject = require('../lib/DatabaseAccessObject')
 const RequiredValidator = require('../lib/validators/RequiredValidator')
 const NumericValidator = require('../lib/validators/NumericValidator')
-const DatabaseConnection = require('../lib/DatabaseConnection') // eslint-disable-line
 const MySqlDatabaseConnection = require('../lib/databaseConnections/MySqlDatabaseConnection')
 const RelationBelongsTo = require('../lib/relation/RelationBelongsTo')
 const RelationHasOne = require('../lib/relation/RelationHasOne')
