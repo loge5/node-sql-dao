@@ -1,6 +1,6 @@
 {
   "name": "sql-dao",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "database access objects for sql databases",
   "main": "index.js",
   "scripts": {

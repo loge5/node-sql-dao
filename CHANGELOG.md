@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/loge5/node-sql-dao/compare/v1.4.0...v1.4.2) (2025-12-02)
+
+
+### Bug Fixes
+
+* JS-DOC ([ad10ced](https://github.com/loge5/node-sql-dao/commit/ad10cedd5b67c7da4fc96bb13188b16dcf949efe))
+
 ## [1.4.0](https://github.com/loge5/node-sql-dao/compare/v1.3.0...v1.4.0) (2021-07-22)
 
 
